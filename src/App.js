@@ -1,50 +1,21 @@
-import { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Import Navigate for redirection
+import Login from './login';
+import Signup from './signup';
+import Home from './home';
 import './App.css';
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleLogin = () => {
-    if (username && password) {
-      setLoggedIn(true);
-    } else {
-      alert('Please enter both username and password');
-    }
-  };
-
   return (
-    <div className="login-container">
-      {!loggedIn ? (
-        <div className="login-form">
-          <h2>Login</h2>
-          <input 
-            type="text" 
-            placeholder="Username" 
-            value={username}
-            onChange={handleUsernameChange} 
-          />
-          <input 
-            type="password" 
-            placeholder="Password" 
-            value={password}
-            onChange={handlePasswordChange} 
-          />
-          <button onClick={handleLogin}>Login</button>
-        </div>
-      ) : (
-        <h1>Welcome, {username}!</h1>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        {/* Redirect the root ("/") to the signup page */}
+        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
