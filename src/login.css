@@ -4,7 +4,6 @@ body {
     background: linear-gradient(135deg, #5e73b3, #0d4258);
     height: 100vh;
     display: flex;
-    /* object-fit: cover; */
     justify-content: center;
     align-items: center;
   }
@@ -30,7 +29,6 @@ body {
   }
   
   input {
-    /* display: block; */
     margin: 8px;
     padding: 16px;
     width: 85%;

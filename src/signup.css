@@ -51,8 +51,9 @@
   }
   
   .error {
-    color: red;
+    color: #e63946;
     font-size: 14px;
+    margin: 0px;
   }
   
   .login-link-id, .signup-link-id {

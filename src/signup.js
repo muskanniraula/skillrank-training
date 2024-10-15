@@ -26,7 +26,6 @@ const Signup = () => {
     setConfirmPassword(event.target.value);
   };
 
-  // Basic validation for empty fields, valid email, and password match
   const validateForm = () => {
     let formErrors = {};
     if (!username) formErrors.username = 'Username is required';
@@ -45,7 +44,7 @@ const Signup = () => {
     event.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
-      // Submit form or navigate to a new page after successful sign-up
+    
       alert('Sign-up successful!');
       navigate('/login');
     } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Import Navigate for redirection
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './login';
 import Signup from './signup';
 import Home from './home';
@@ -9,7 +9,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Redirect the root ("/") to the signup page */}
         <Route path="/" element={<Navigate to="/signup" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
