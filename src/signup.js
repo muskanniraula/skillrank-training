@@ -66,31 +66,32 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <div className="signup-form">
+      <form className="signup-form" onSubmit={handleSignup}>
         <h2>Sign Up</h2>
-        <input 
-          type="text" 
-          placeholder="Username" 
+
+        <input
+          type="text"
+          placeholder="Username"
           value={username}
           onChange={handleUsernameChange}
         />
         {errors.username && <p className="error">{errors.username}</p>}
-        
-        <input 
-          type="email" 
-          placeholder="Email" 
+
+        <input
+          type="email"
+          placeholder="Email"
           value={email}
           onChange={handleEmailChange}
         />
         {errors.email && <p className="error">{errors.email}</p>}
-        
-        <input 
-          type="password" 
-          placeholder="Password" 
+
+        <input
+          type="password"
+          placeholder="Password"
           value={password}
           onChange={handlePasswordChange}
-          onFocus={() => setShowPasswordCriteria(true)} 
-          onBlur={() => setShowPasswordCriteria(false)}   
+          onFocus={() => setShowPasswordCriteria(true)}
+          onBlur={() => setShowPasswordCriteria(false)}
         />
         {errors.password && <p className="error">{errors.password}</p>}
 
@@ -105,21 +106,23 @@ const Signup = () => {
           </div>
         )}
 
-        <input 
-          type="password" 
-          placeholder="Confirm Password" 
+        <input
+          type="password"
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />
         {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-        
-        <button onClick={handleSignup}>Sign Up</button>
+
+        <button type="submit">Sign Up</button>
 
         <p className="login-link">
           Already have an account?{' '}
-          <span className='login-link-id' onClick={() => navigate('/login')}>Login</span>
+          <span className="login-link-id" onClick={() => navigate('/login')}>
+            Login
+          </span>
         </p>
-      </div>
+      </form>
     </div>
   );
 };
