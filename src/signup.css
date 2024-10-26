@@ -1,4 +1,11 @@
+body{
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #5e73b3, #0d4258);
+  background-repeat: no-repeat;
+}
 .signup-container {
+  margin-top: 80px;
     text-align: center;
   }
   
