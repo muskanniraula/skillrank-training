@@ -134,3 +134,15 @@ h4 {
 .modal-content button:hover {
   background-color: #555;
 }
+
+.search-bar {
+  display: block;
+  margin: 24px auto;
+  padding: 8px;
+  width: 80%;
+  max-width: 400px;
+  background-color: none;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+}

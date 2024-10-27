@@ -6,6 +6,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -26,11 +27,23 @@ const HomePage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const filteredRecipes = recipes.filter(recipe =>
+    recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className='home_body'>
       <h1>Recipes</h1>
+      <input
+        type="text"
+        placeholder="Search recipes..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar"
+      />
+
       <div className="recipes-container">
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <div
             className="recipe-card"
             key={recipe.id}
