@@ -21,6 +21,15 @@ h4 {
   color: #555;
 }
 
+input {
+  display: block;
+  margin: 20px auto;
+  padding: 8px;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 .recipes-container {
   display: flex;
   flex-wrap: wrap;
@@ -135,14 +144,4 @@ h4 {
   background-color: #555;
 }
 
-.search-bar {
-  display: block;
-  margin: 24px auto;
-  padding: 8px;
-  width: 80%;
-  max-width: 400px;
-  background-color: none;
-  border: 1px solid #ffffff;
-  border-radius: 8px;
-  font-size: 16px;
-}
+

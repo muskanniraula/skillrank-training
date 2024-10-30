@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import RecipeCard from './RecipeCard';
+import RecipeModal from './RecipeModal';
 import './home.css';
 
 const HomePage = () => {
@@ -6,7 +8,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,51 +34,25 @@ const HomePage = () => {
   );
 
   return (
-    <div className='home_body'>
+    <div className="home_body">
       <h1>Recipes</h1>
       <input
         type="text"
         placeholder="Search recipes..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-bar"
       />
-
       <div className="recipes-container">
         {filteredRecipes.map((recipe) => (
-          <div
-            className="recipe-card"
+          <RecipeCard
             key={recipe.id}
+            recipe={recipe}
             onClick={() => setSelectedRecipe(recipe)}
-          >
-            <h3>{recipe.name}</h3>
-            <img src={recipe.image} alt={recipe.title} />
-          </div>
+          />
         ))}
       </div>
-
       {selectedRecipe && (
-        <div className="modal-overlay" onClick={() => setSelectedRecipe(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{selectedRecipe.name}</h2>
-            <img src={selectedRecipe.image} alt={selectedRecipe.title} />
-            <div className="modal-details">
-              <div className="ingredients">
-                <h4>Ingredients:</h4>
-                <ul>
-                  {selectedRecipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="instructions">
-                <h4>Instructions:</h4>
-                <p>{selectedRecipe.instructions}</p>
-              </div>
-            </div>
-            <button onClick={() => setSelectedRecipe(null)}>Close</button>
-          </div>
-        </div>
+        <RecipeModal recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
       )}
     </div>
   );
