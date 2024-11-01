@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import RecipeCard from './RecipeCard';
-import RecipeModal from './RecipeModal';
+import RecipeCard from './components/RecipeCard';
+import RecipeModal from './components/RecipeModal';
+import SearchBar from './components/SearchBar';
 import './home.css';
 
 const HomePage = () => {
@@ -8,7 +9,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -22,35 +23,26 @@ const HomePage = () => {
         setLoading(false);
       }
     };
-
     fetchRecipes();
   }, []);
+
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  const filteredRecipes = recipes.filter(recipe =>
-    recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div className="home_body">
       <h1>Recipes</h1>
-      <input
-        type="text"
-        placeholder="Search recipes..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       <div className="recipes-container">
         {filteredRecipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onClick={() => setSelectedRecipe(recipe)}
-          />
+          <RecipeCard key={recipe.id} recipe={recipe} onClick={setSelectedRecipe} />
         ))}
       </div>
+
       {selectedRecipe && (
         <RecipeModal recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
       )}

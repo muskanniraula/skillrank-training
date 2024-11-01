@@ -52,6 +52,7 @@ input {
   padding: 15px;
   text-align: center;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .recipe-card:hover {
@@ -62,6 +63,7 @@ input {
   max-width: 100%;
   border-radius: 8px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .modal-overlay {
