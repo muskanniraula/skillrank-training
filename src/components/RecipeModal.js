@@ -1,5 +1,5 @@
 import React from 'react';
-import '../home.css';
+import '../Styles/home.css';
 
 const RecipeModal = ({ recipe, onClose }) => {
   return (

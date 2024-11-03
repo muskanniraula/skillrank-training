@@ -1,0 +1,19 @@
+.topbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    background-color: #ffffff
+}
+
+.nav-link {
+    margin:0 24px;
+    text-decoration: none;
+    color: #3a7bc1;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}

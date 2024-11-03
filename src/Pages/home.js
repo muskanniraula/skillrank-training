@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import RecipeCard from './components/RecipeCard';
-import RecipeModal from './components/RecipeModal';
-import SearchBar from './components/SearchBar';
-import './home.css';
+import RecipeCard from '../components/RecipeCard';
+import RecipeModal from '../components/RecipeModal';
+import SearchBar from '../components/SearchBar';
+import '../Styles/home.css';
 
-const HomePage = () => {
+const HomePage = ({ favorites, toggleFavorite }) => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,7 +39,13 @@ const HomePage = () => {
       <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       <div className="recipes-container">
         {filteredRecipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} onClick={setSelectedRecipe} />
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+            onClick={() => setSelectedRecipe(recipe)}
+            isFavorite={favorites.some((fav) => fav.id === recipe.id)}
+            toggleFavorite={toggleFavorite}
+          />
         ))}
       </div>
 

@@ -1,0 +1,7 @@
+.favourites-body{
+    margin: 0;
+  padding: 20px;
+  height: 100vh;
+  background: linear-gradient(135deg, #5e73b3, #0d4258);
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,12 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../Styles/TopBar.css';
+
+const TopBar = () => (
+  <div className="topbar">
+    <Link to="/" className="nav-link">Home</Link>
+    <Link to="/favourites" className="nav-link">Favourites</Link>
+  </div>
+);
+
+export default TopBar;
