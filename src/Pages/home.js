@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import RecipeCard from '../components/RecipeCard';
 import RecipeModal from '../components/RecipeModal';
 import SearchBar from '../components/SearchBar';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import '../Styles/home.css';
 
 const HomePage = ({ favorites, toggleFavorite }) => {
@@ -30,7 +32,21 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="home_body">
+        <h1>Recipes</h1>
+        <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+        <div className="recipes-container">
+         
+          {[...Array(5)].map((_, index) => (
+            <Skeleton key={index} height={150} style={{ marginBottom: '1rem' }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (

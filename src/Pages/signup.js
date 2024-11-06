@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/signup.css';
+import Skeleton from 'react-loading-skeleton';
+import '../Styles/signup.css';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -95,7 +96,6 @@ const Signup = () => {
         />
         {errors.password && <p className="error">{errors.password}</p>}
 
-        {/* displaying criteria only when password textfield is clicked */}
         {showPasswordCriteria && (
           <div className="password-criteria">
             <p className={passwordCriteria.length ? 'valid' : 'invalid'}>✔ At least 8 characters</p>
