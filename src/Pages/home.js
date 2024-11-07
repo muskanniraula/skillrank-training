@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import RecipeCard from '../components/RecipeCard';
 import RecipeModal from '../components/RecipeModal';
 import SearchBar from '../components/SearchBar';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import '../Styles/home.css';
+import '../Styles/SkeletonLoader.css';
 
 const HomePage = ({ favorites, toggleFavorite }) => {
   const [recipes, setRecipes] = useState([]);
@@ -32,38 +31,32 @@ const HomePage = ({ favorites, toggleFavorite }) => {
     recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) {
-    return (
-      <div className="home_body">
-        <h1>Recipes</h1>
-        <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-        <div className="recipes-container">
-         
-          {[...Array(5)].map((_, index) => (
-            <Skeleton key={index} height={150} style={{ marginBottom: '1rem' }} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="home_body">
       <h1>Recipes</h1>
       <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-      <div className="recipes-container">
-        {filteredRecipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onClick={() => setSelectedRecipe(recipe)}
-            isFavorite={favorites.some((fav) => fav.id === recipe.id)}
-            toggleFavorite={toggleFavorite}
-          />
-        ))}
-      </div>
+
+      {loading ? (
+        <div className="skeleton-container">
+          {[...Array(5)].map((_, index) => (
+            <div className="skeleton-item" key={index}></div>
+          ))}
+        </div>
+      ) : (
+        <div className="recipes-container">
+          {filteredRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              onClick={() => setSelectedRecipe(recipe)}
+              isFavorite={favorites.some((fav) => fav.id === recipe.id)}
+              toggleFavorite={toggleFavorite}
+            />
+          ))}
+        </div>
+      )}
 
       {selectedRecipe && (
         <RecipeModal recipe={selectedRecipe} onClose={() => setSelectedRecipe(null)} />
